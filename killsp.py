@@ -3,12 +3,12 @@
 # Author: neo
 # Date: 2018/11/30
 
+import pyperclip as pyclip
+
 '''
 删掉一段文字内的空格和回车
 解决pdf中复制出的文字问题
 '''
-
-
 if __name__ == "__main__":
     # 搜索根目录下的sin.txt文件，要提前把要转换的文字保存在里面
     # sin = str input
@@ -16,13 +16,16 @@ if __name__ == "__main__":
     outfilename = 'sout.txt'
 
     # 输入的字符串
-    sin = None
-    with open(filename, 'r', encoding="utf-8") as f:
-        sin = f.read()
+    # sin = None
+    # with open(filename, 'r', encoding="utf-8") as f:
+        # sin = f.read()
     # sin = input('input the str')
 
+    # 输入从剪贴板取数据
+    sin = pyclip.paste()
+
     # 把输入字符串的空格和回车删除
-    sout = sin.replace(' ', '').replace('\n', '')
+    sout = sin.replace(' ', '').replace('\n', '').replace('\r', '')
 
     # 打印输入和输出的文字内容，供再复制
     print("sin: ", sin)
@@ -32,4 +35,6 @@ if __name__ == "__main__":
     with open(outfilename, 'w', encoding="utf-8") as out:
         out.write(sout)
 
+    # 将文字写入剪贴板
+    pyclip.copy(sout)
 
