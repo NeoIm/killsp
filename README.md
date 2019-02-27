@@ -10,6 +10,7 @@
 ### 使用说明
 1. 请下载killsp.py、ui.py、keyboard.py到同一目录下。（打包下载就对了）  
 在命令行运行 `python ui.py` 即可运行本程序，会显示一个小窗口。  
+在window下，双击`ui.py`也可以直接运行
 
 2. 需要的第三方包：（均pip即可下载）
 * wx：界面程序              pip install -U wxPython
