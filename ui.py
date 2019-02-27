@@ -15,6 +15,7 @@ import queue
 
 from killsp import Kill
 from killsp import pyclip
+from keylistener import KeyListener
 
 class MyFrame ( wx.Frame ):
 
@@ -65,7 +66,15 @@ class MainWindow(MyFrame):
         self.Bind(wx.EVT_BUTTON, self.OnUpdateBtn, self.btn_update)
         self.Bind(wx.EVT_BUTTON, self.OnChangeBtn, self.btn_change)
 
+        # 启动键盘监听线程
+        self.keyThread = KeyboardThread()
+        self.keyThread.setDaemon(True)
+        self.keyThread.start()
+
     def OnUpdateBtn(self, event):
+        """
+        把现在剪贴板的内容显示出来
+        """
         self.text_Paste.Clear()
         clip = pyclip.paste()
         print(clip)
@@ -73,11 +82,22 @@ class MainWindow(MyFrame):
 
 
     def OnChangeBtn(self, event):
+        """
+        一键处理剪贴板的内容
+        """
         self.text_Paste.Clear()
         kill = Kill()
         sout = kill.kill_sp()
         print(sout)
         self.text_Paste.write(sout)
+
+class KeyboardThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        listener = KeyListener()
+        listener.start()
 
 
 # 主程序
