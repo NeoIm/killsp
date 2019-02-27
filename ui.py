@@ -21,7 +21,7 @@ class MyFrame ( wx.Frame ):
 
     def __init__( self, parent ):
         wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = "killsp", pos = wx.DefaultPosition,
-                            size = wx.Size( 340,280 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+                            size = wx.Size( 600,400 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -42,7 +42,7 @@ class MyFrame ( wx.Frame ):
         fgSizer.Add( bSizer, 1, wx.EXPAND, 5 )
 
         # 大文本框
-        self.text_Paste = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, size=(180, 200),
+        self.text_Paste = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, size=(400, 300),
                                        style=wx.TE_MULTILINE )
         fgSizer.Add( self.text_Paste, 0, wx.ALL, 5 )
 
