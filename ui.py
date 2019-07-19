@@ -16,6 +16,7 @@ import queue
 from killsp import Kill
 from killsp import pyclip
 from keylistener import KeyListener
+from doConfig import ConfigProcessor
 
 class MyFrame ( wx.Frame ):
 
@@ -46,6 +47,12 @@ class MyFrame ( wx.Frame ):
                                        style=wx.TE_MULTILINE )
         fgSizer.Add( self.text_Paste, 0, wx.ALL, 5 )
 
+        # 选择语言（处理的格式差异）
+        languages = ["zh", "en"]
+        self.radioLanguage = wx.RadioBox( self, wx.ID_ANY, u"选择语言",
+                                          wx.DefaultPosition, (120, 20), languages, 3, wx.RA_SPECIFY_ROWS)
+        bSizer.Add(self.radioLanguage, 0, wx.ALL, 5)
+
         self.SetSizer( fgSizer )
         self.Layout()
 
@@ -63,15 +70,21 @@ class MainWindow(MyFrame):
         self.dataQueue = queue.Queue()
 
         # 绑定控件事件处理器
-        self.Bind(wx.EVT_BUTTON, self.OnUpdateBtn, self.btn_update)
-        self.Bind(wx.EVT_BUTTON, self.OnChangeBtn, self.btn_change)
+        self.Bind(wx.EVT_BUTTON, self.onUpdateBtn, self.btn_update)
+        self.Bind(wx.EVT_BUTTON, self.onChangeBtn, self.btn_change)
+
+        self.radioLanguage.Bind(wx.EVT_RADIOBOX, self.onCheckLanguage)
+        # 读取现在配置文件中的配置，初始化
+        processor = ConfigProcessor()
+        lang = processor.readConfig()
+        self.radioLanguage.SetSelection(self.radioLanguage.FindString(lang))
 
         # 启动键盘监听线程
         self.keyThread = KeyboardThread()
         self.keyThread.setDaemon(True)
         self.keyThread.start()
 
-    def OnUpdateBtn(self, event):
+    def onUpdateBtn(self, event):
         """
         把现在剪贴板的内容显示出来
         """
@@ -81,7 +94,7 @@ class MainWindow(MyFrame):
         self.text_Paste.write(clip)
 
 
-    def OnChangeBtn(self, event):
+    def onChangeBtn(self, event):
         """
         一键处理剪贴板的内容
         """
@@ -90,6 +103,18 @@ class MainWindow(MyFrame):
         sout = kill.kill_sp()
         print(sout)
         self.text_Paste.write(sout)
+
+    def onCheckLanguage(self, event):
+        """
+        接收单选框的字符串，并写入配置文件
+        设置处理的格式
+        """
+        lang = self.radioLanguage.GetStringSelection()
+        processor = ConfigProcessor()
+        processor.setCongfig(lang)
+
+
+
 
 class KeyboardThread(threading.Thread):
     def __init__(self):

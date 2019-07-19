@@ -6,6 +6,8 @@
 
 import pyperclip as pyclip
 
+from doConfig import ConfigProcessor
+
 '''
 删掉一段文字内的空格和回车
 解决pdf中复制出的文字问题
@@ -19,8 +21,15 @@ class Kill:
     def kill_sp(self):
         # 获取剪贴板上的文字
         self.sin = pyclip.paste()
+        self.sout = self.sin
 
-        self.sout = self.sin.replace(' ', '').replace('\n', '').replace('\r', '')
+        # 根据配置文件的语言选择处理的方式
+        processor = ConfigProcessor()
+        lang = processor.readConfig()
+        if(lang == processor.valueZh):
+            self.sout = self.sin.replace(' ', '').replace('\n', '').replace('\r', '')
+        elif(lang == processor.valueEn):
+            self.sout = self.sin.replace('\n', ' ').replace('\r', '')
 
         # 处理好的文字放回剪贴板
         pyclip.copy(self.sout)
