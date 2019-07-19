@@ -8,7 +8,7 @@
 建议也在同样的环境下运行，Mac也可，Linux未测试
 
 ### 使用说明
-0. 安装python3.6，这个请自行百度，基本属于傻瓜操作
+0. 安装python 3.6或以上版本
 
 1. 请下载killsp.py、ui.py、keyboard.py、doConfig.py到同一目录下。（打包下载就对了）
 在命令行运行 `python ui.py` 即可运行本程序，会显示一个小窗口。  
