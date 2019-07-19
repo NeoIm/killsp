@@ -12,15 +12,15 @@
 ### 使用说明
 0. 安装python 3.6或以上版本
 
-1. 请下载killsp.py、ui.py、keylistener.py、doConfig.py到同一目录下。（打包下载就对了）
+1. 请下载killsp.py、ui.py、keylistener.py、doConfig.py到同一目录下。（打包下载就对了）  
 在命令行运行 `python ui.py` 即可运行本程序，会显示一个小窗口。  
 在window下，双击`ui.py`也可以直接运行  
 直接打开`keylistener.py`，则可以通过快捷键 `ctrl + alt + c` 完成操作，详见v2.1说明
 
 2. 需要的第三方包：（均pip即可下载）
-* wx：界面程序              pip install -U wxPython
-* pyperclip：剪贴板处理     pip install pyperclip  
-* pynput：键盘监听          pip install pynput
+  * wx：界面程序              pip install -U wxPython
+  * pyperclip：剪贴板处理     pip install pyperclip  
+  * pynput：键盘监听          pip install pynput
 
 ### 最新版本 v3.0
 增加英文内容的格式支持，其实就是删掉回车加一个空格
