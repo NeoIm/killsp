@@ -8,6 +8,8 @@
 建议也在同样的环境下运行，Mac也可，Linux未测试
 
 ### 使用说明
+0. 安装python3.6，这个请自行百度，基本属于傻瓜操作
+
 1. 请下载killsp.py、ui.py、keyboard.py、doConfig.py到同一目录下。（打包下载就对了）
 在命令行运行 `python ui.py` 即可运行本程序，会显示一个小窗口。  
 在window下，双击`ui.py`也可以直接运行
@@ -16,7 +18,11 @@
 * wx：界面程序              pip install -U wxPython
 * pyperclip：剪贴板处理     pip install pyperclip  
 * pynput：键盘监听          pip install pynput
- 
+
+### 最新版本 v3.0
+增加英文内容的格式支持，其实就是删掉回车加一个空格
+增加了配置文件（config.ini），用于保存当前处理格式
+
 ### v1.0
 使用str的replace函数
 暂时不能处理分段文字，全部内容会生成在一个段里
