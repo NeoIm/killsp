@@ -18,12 +18,12 @@ class KeyListener:
             # alt被按下时改变标志位
             if key == keyboard.Key.alt_l or key == keyboard.Key.alt_r:
                 self.flag_alt = True
-                print(key, '  pressed')
+                # print(key, '  pressed')
 
             # ctrl被按下时改变标志位
             if key == keyboard.Key.ctrl_l or key == keyboard.Key.ctrl_r:
                 self.flag_ctrl = True
-                print(key, '  pressed')
+                # print(key, '  pressed')
 
             # 确定alt + ctrl + c 被按下时触发动作
             # 在这里处理剪贴板的内容
@@ -37,7 +37,8 @@ class KeyListener:
 
         # 没被处理的其他功能键按下时触发
         except AttributeError:
-            print(key, "other functional pressed")
+            # print(key, "other functional pressed")
+            pass
 
     def start(self):
         # 开始进程
